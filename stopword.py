@@ -30,7 +30,8 @@ for ele in common1:
         int(ele) 
     except:
         common.append(ele)
-common = [i for i in common if not i.encode("UTF-8").isalpha() and not i.encode("UTF-8").isalnum()] #去除英文字串和包含英文加數字的字串
+common = [i for i in common if not i.encode("UTF-8").isalpha() and not i.encode("UTF-8").isalnum()]
+#去除英文字串和包含英文加數字的字串
 
 print(common)
 
