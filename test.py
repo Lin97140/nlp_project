@@ -4,12 +4,12 @@ import time
 import random
 import jieba
 headers = {"content-type": "text/html; charset=UTF-8","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36"}
-n = 51
-file_count = 469
+n = 117
+file_count = 1
 
 
 #從goodlife.tw抓資料
-for i in range(n, 117):
+for i in range(1, n+1): #從第一頁到第117頁
     print(i)
     if i == 1:
         url = "https://goodlife.tw/%E5%92%96%E5%95%A1%E5%BA%97/%E6%98%9F%E5%B7%B4%E5%85%8B"
