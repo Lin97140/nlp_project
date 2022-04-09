@@ -17,7 +17,7 @@ for i in range(1, n+1): #從第一頁到第117頁
         url = "https://goodlife.tw/%E5%92%96%E5%95%A1%E5%BA%97/%E6%98%9F%E5%B7%B4%E5%85%8B/page/" +str(i) #每一頁的網址
     res = re.get(url, headers = headers)
     soup = Bs(res.text, "html.parser")
-    result = soup.find_all("li", class_="topic expired") #抓每個標題
+    result = soup.find_all("li", class_="topic expired") #抓每頁的所有標題
     
     for r in result:
         if r.find("a"):
