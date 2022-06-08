@@ -4,23 +4,6 @@ import random
 import jieba
 from nltk import classify, NaiveBayesClassifier
 
-def pcr(pcr_dir):
-    pcr_def = PlaintextCorpusReader(root=pcr_dir, fileids=".*\.txt")
-    return pcr_def
-
-class Doc:
-    def __init__(self, c, dir_file):
-        self.dir_file = dir_file
-        self.doc = [(self.pcr(dir_file).words(fileid),c) for fileid in self.pcr(dir_file).fileids()]
-    
-    def pcr(self, dir_file):
-        pcr_t = PlaintextCorpusReader(root=dir_file, fileids=".*\.txt")
-        return pcr_t
-    
-    
-        
-
-
 dir_class1 = "class1"
 pcr_class1 = PlaintextCorpusReader(root=dir_class1, fileids=".*\.txt")
 
