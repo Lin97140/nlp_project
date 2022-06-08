@@ -41,7 +41,7 @@ all_words = FreqDist(pcr_class1.words() + pcr_class2.words() +pcr_class3.words()
 word_features = list(all_words)[:N_features]
 
 
-def document_features(document_words):
+def document_features(document_words, word_features):
     document_words = set(document_words)
     features = {}
     for word in word_features:
@@ -87,7 +87,7 @@ print(documents[-1])
 
 
 all_words = FreqDist(pcr_0.words() + pcr_1.words() +pcr_2.words())   # 20 seconds...
-word_features = list(all_words)[:N_features]
+word_features1 = list(all_words)[:N_features]
 
 featuresets = [(document_features(d), c) for (d,c) in documents]    # 15 seconds...
 train_set, test_set = featuresets[N_testing:], featuresets[:N_testing]
@@ -120,7 +120,7 @@ print(documents[0])
 print(documents[-1])
 
 all_words = FreqDist(pcr_3.words() + pcr_4.words())   # 20 seconds...
-word_features = list(all_words)[:N_features]
+word_features2 = list(all_words)[:N_features]
 
 
 featuresets = [(document_features(d), c) for (d,c) in documents]    # 15 seconds...
@@ -158,7 +158,7 @@ print(documents[-1])
 
 
 all_words = FreqDist(pcr_5.words() + pcr_6.words() +pcr_7.words())   # 20 seconds...
-word_features = list(all_words)[:N_features]
+word_features3 = list(all_words)[:N_features]
 
 featuresets = [(document_features(d), c) for (d,c) in documents]    # 15 seconds...
 train_set, test_set = featuresets[N_testing:], featuresets[:N_testing]
@@ -188,7 +188,7 @@ print(documents[0])
 print(documents[-1])
 
 all_words = FreqDist(pcr_8.words() + pcr_9.words())   # 20 seconds...
-word_features = list(all_words)[:N_features]
+word_features4 = list(all_words)[:N_features]
 
 
 featuresets = [(document_features(d), c) for (d,c) in documents]    # 15 seconds...
@@ -206,16 +206,15 @@ while True:
     if title == "0":
         break
     title_cut = jieba.cut(title)
-    print(title_cut)
-    class_type = classifier_class.classify(document_features(title_cut))
+    class_type = classifier_class.classify(document_features(title_cut, word_features))
     if class_type == "class1":
-        result = classifier_class1.classify(document_features(title_cut))
+        result = classifier_class1.classify(document_features(title_cut, word_features1))
     elif class_type == "class2":
-        result = classifier_class2.classify(document_features(title_cut))
+        result = classifier_class2.classify(document_features(title_cut, word_features2))
     elif class_type == "class3":
-        result = classifier_class3.classify(document_features(title_cut))
+        result = classifier_class3.classify(document_features(title_cut, word_features3))
     else:
-        result = classifier_class4.classify(document_features(title_cut))
+        result = classifier_class4.classify(document_features(title_cut, word_features4))
         
     print("result: %s" %result)
     
