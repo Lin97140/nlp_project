@@ -24,7 +24,7 @@ def gen_document(typeList):
     
     return documents,fd_list
 
-def document_features(document_words):
+def document_features(document_words,word_features):
     
     document_words = [word for word in document_words if word not in stop_word()]
     document_words = set(document_words)
@@ -69,7 +69,7 @@ with open (file="data/books/fd_stop"+".txt",mode="w",encoding="utf-8" ) as f:
 '''
 
 N_testing = 50
-featuresets = [(document_features(d), c) for (d,c) in documents]
+featuresets = [(document_features(d,word_features), c) for (d,c) in documents]
 train_set, test_set = featuresets[N_testing:], featuresets[:N_testing]
 
 
@@ -85,7 +85,7 @@ while True :
         break
     title_cut = jieba.lcut(title,cut_all=False)
     print(title_cut)
-    class_type = classifier.classify(document_features(title_cut))
+    class_type = classifier.classify(document_features(title_cut,word_features))
     print(class_type)
 
 print("\n程式結束")
